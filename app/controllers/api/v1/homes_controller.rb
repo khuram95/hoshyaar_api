@@ -5,7 +5,7 @@ module Api
     # Test Controller
     class HomesController < ApplicationController
       def index
-        render json: {hello: "hello word"}
+        # render json: {hello: "hello word"}
       end
     end
   end
