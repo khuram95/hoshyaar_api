@@ -16,11 +16,12 @@ module Twilio
 
     def send(message, to)
       send_message = {
-        to: to,
+        to: "+#{to}",
         from: ENV['TWILIO_NUMBER'],
-        body: message
+        body: "Wellcome To hoshyaar.\nPlease enter #{message} security code for phone verification."
       }
       client.messages.create(send_message)
+      # client.api.account.messages.create(message)
     end
   end
 end

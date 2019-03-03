@@ -7,18 +7,18 @@ class CreateAndSendVerificationCode
   end
 
   def call
-    security_code = generate_security_code
-    PhoneSecurityCode
+    opt_code = generate_opt_code
+    Optcode
       .where(user: user).first_or_initialize.tap do |c|
-        c.security_code = security_code
+        c.opt_code = opt_code
         c.expire_at = Time.now + 5 * 60
         c.save!
       end
 
-    client.send(security_code, user.phone_number)
+    client.send(opt_code, user.phone_number)
   end
 
-  def generate_security_code
+  def generate_opt_code
     rand.to_s[2..8]
   end
 end

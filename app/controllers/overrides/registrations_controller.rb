@@ -1,9 +1,13 @@
-module Override
-  class RegistrationsControlller < DeviseTokenAuth::RegistrationsController
+module Overrides
+  class RegistrationsController < DeviseTokenAuth::RegistrationsController
     respond_to :json
 
-    def create
-      User.create! create_params
+    def new
+      User.transaction do
+        @user = User.create! create_params
+        CreateAndSendVerificationCode.new(@user).call
+        render json: @user
+      end
     end
 
     private
