@@ -10,7 +10,7 @@ module Overrides
       end
     end
 
-    private
+    protected
 
     def create_params
       params.permit(:phone_number, :user_name, :password, :latitude, :longitude)
