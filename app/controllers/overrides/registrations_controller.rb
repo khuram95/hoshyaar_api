@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 module Overrides
+  # override devise_atuh_token resistration controller
   class RegistrationsController < DeviseTokenAuth::RegistrationsController
     respond_to :json
 

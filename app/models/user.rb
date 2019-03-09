@@ -5,8 +5,13 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable,
-         authentication_keys: :phone_number
+         :recoverable, :rememberable
+        #  authentication_keys: :phone_number
+  include DeviseTokenAuth::Concerns::User
 
   has_one :optcode, dependent: :destroy
+
+  def add_user_uid
+    self.uid = SecureRandom.uuid
+  end
 end

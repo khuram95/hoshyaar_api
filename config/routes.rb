@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       controllers: {
         registrations:     'overrides/registrations',
         # passwords:         'overrides/passwords',
-        # sessions:          'overrides/sessions',
+        sessions:          'overrides/sessions',
         # token_validations: 'overrides/token_validations'
       }
     # devise_scope :user do
