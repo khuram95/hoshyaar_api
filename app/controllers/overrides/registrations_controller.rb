@@ -7,7 +7,9 @@ module Overrides
 
     def new
       User.transaction do
-        @user = User.create! create_params
+        @user = User.new create_params
+        @user.add_user_uid
+        @user.save!
         CreateAndSendVerificationCode.new(@user).call
         render json: @user
       end
