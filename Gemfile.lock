@@ -60,6 +60,8 @@ GEM
       devise (> 3.5.2, < 4.6)
       rails (>= 4.2.0, < 6)
     erubi (1.8.0)
+    faker (1.9.1)
+      i18n (>= 0.7)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.25)
@@ -166,6 +168,7 @@ DEPENDENCIES
   byebug
   devise
   devise_token_auth
+  faker
   figaro
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)

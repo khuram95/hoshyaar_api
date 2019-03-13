@@ -1,0 +1,2 @@
+class VerifiedSchoolDatum < ApplicationRecord
+end

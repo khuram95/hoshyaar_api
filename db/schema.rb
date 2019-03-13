@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_03_111826) do
+ActiveRecord::Schema.define(version: 2019_03_12_235508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,41 @@ ActiveRecord::Schema.define(version: 2019_03_03_111826) do
     t.string "opt_code"
     t.string "expire_at"
     t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "school_details", force: :cascade do |t|
+    t.integer "total_class_rooms"
+    t.integer "use_class_rooms"
+    t.integer "total_teacher"
+    t.integer "non_teacher"
+    t.integer "toilet_avaliable"
+    t.integer "toilet_functional"
+    t.boolean "is_toilet_functional"
+    t.integer "student_enrolled"
+    t.integer "student_present"
+    t.boolean "is_electricity_avaliable"
+    t.boolean "is_drinking_water_avaliable"
+    t.boolean "is_boundary_wall"
+    t.float "avaliable_fund"
+    t.float "expenditure"
+    t.float "balance"
+    t.integer "school_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "schools", force: :cascade do |t|
+    t.date "visting_date"
+    t.string "emis"
+    t.string "school_name"
+    t.string "district"
+    t.string "tehsil"
+    t.string "markaz"
+    t.string "school_level"
+    t.float "latitude"
+    t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -52,6 +87,14 @@ ActiveRecord::Schema.define(version: 2019_03_03_111826) do
     t.index ["phone_number"], name: "index_users_on_phone_number", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
+  end
+
+  create_table "verified_school_data", force: :cascade do |t|
+    t.integer "school_detail_id"
+    t.integer "user_id"
+    t.date "verifed_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
