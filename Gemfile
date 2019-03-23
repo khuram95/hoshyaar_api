@@ -9,9 +9,14 @@ gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.2'
 gem 'swagger-docs'
 gem 'devise'
+gem 'devise_token_auth'
+gem 'twilio-ruby'
+gem 'figaro'
+gem 'faker'#, :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'rails-erd'
 end
 
 group :development do

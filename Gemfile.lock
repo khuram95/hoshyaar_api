@@ -48,6 +48,7 @@ GEM
       msgpack (~> 1.0)
     builder (3.2.3)
     byebug (10.0.2)
+    choice (0.2.0)
     concurrent-ruby (1.1.4)
     crass (1.0.4)
     devise (4.5.0)
@@ -56,12 +57,22 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
+    devise_token_auth (1.0.0)
+      devise (> 3.5.2, < 4.6)
+      rails (>= 4.2.0, < 6)
     erubi (1.8.0)
+    faker (1.9.1)
+      i18n (>= 0.7)
+    faraday (0.15.4)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.25)
+    figaro (1.1.1)
+      thor (~> 0.14)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     i18n (1.3.0)
       concurrent-ruby (~> 1.0)
+    jwt (2.1.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -79,6 +90,7 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.11.3)
     msgpack (1.2.4)
+    multipart-post (2.0.0)
     nio4r (2.3.1)
     nokogiri (1.9.1)
       mini_portile2 (~> 2.4.0)
@@ -104,6 +116,11 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
+    rails-erd (1.5.2)
+      activerecord (>= 3.2)
+      activesupport (>= 3.2)
+      choice (~> 0.2.0)
+      ruby-graphviz (~> 1.2)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
     railties (5.2.2)
@@ -119,6 +136,7 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
+    ruby-graphviz (1.2.4)
     ruby_dep (1.5.0)
     spring (2.0.2)
       activesupport (>= 4.2)
@@ -137,6 +155,10 @@ GEM
       rails (>= 3)
     thor (0.20.3)
     thread_safe (0.3.6)
+    twilio-ruby (5.17.0)
+      faraday (~> 0.9)
+      jwt (>= 1.5, <= 2.5)
+      nokogiri (>= 1.6, < 2.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     warden (1.2.8)
@@ -152,13 +174,18 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   byebug
   devise
+  devise_token_auth
+  faker
+  figaro
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
   rails (~> 5.2.2)
+  rails-erd
   spring
   spring-watcher-listen (~> 2.0.0)
   swagger-docs
+  twilio-ruby
   tzinfo-data
 
 RUBY VERSION

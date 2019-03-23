@@ -10,9 +10,99 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2019_03_19_053921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "otpcodes", force: :cascade do |t|
+    t.string "otp_code"
+    t.string "expire_at"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "school_details", force: :cascade do |t|
+    t.integer "total_class_rooms"
+    t.integer "use_class_rooms"
+    t.integer "total_teacher"
+    t.integer "non_teacher"
+    t.integer "toilet_avaliable"
+    t.integer "toilet_functional"
+    t.boolean "is_toilet_functional"
+    t.integer "student_enrolled"
+    t.integer "student_present"
+    t.boolean "is_electricity_avaliable"
+    t.boolean "is_drinking_water_avaliable"
+    t.boolean "is_boundary_wall"
+    t.float "avaliable_fund"
+    t.float "expenditure"
+    t.float "balance"
+    t.integer "school_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "schools", force: :cascade do |t|
+    t.date "visting_date"
+    t.string "emis"
+    t.string "school_name"
+    t.string "district"
+    t.string "tehsil"
+    t.string "markaz"
+    t.string "school_level"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subscribes", force: :cascade do |t|
+    t.integer "school_id"
+    t.integer "user_id"
+    t.string "region"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "provider", default: "phone_number", null: false
+    t.string "uid", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "encrypted_password", null: false
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_phone_number"
+    t.string "phone_number"
+    t.string "user_name"
+    t.string "longitude"
+    t.string "latitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.json "tokens"
+    t.boolean "is_verified", default: false
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["latitude", "longitude"], name: "index_users_on_latitude_and_longitude"
+    t.index ["phone_number"], name: "index_users_on_phone_number", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
+  end
+
+  create_table "verified_school_data", force: :cascade do |t|
+    t.integer "school_detail_id"
+    t.integer "user_id"
+    t.date "verifed_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
