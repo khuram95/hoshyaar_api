@@ -16,6 +16,7 @@ gem 'faker'#, :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'rails-erd'
 end
 
 group :development do

@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_12_235508) do
+ActiveRecord::Schema.define(version: 2019_03_19_053921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "optcodes", force: :cascade do |t|
-    t.string "opt_code"
+  create_table "otpcodes", force: :cascade do |t|
+    t.string "otp_code"
     t.string "expire_at"
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -54,6 +54,14 @@ ActiveRecord::Schema.define(version: 2019_03_12_235508) do
     t.string "school_level"
     t.float "latitude"
     t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subscribes", force: :cascade do |t|
+    t.integer "school_id"
+    t.integer "user_id"
+    t.string "region"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

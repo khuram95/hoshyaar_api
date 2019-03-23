@@ -9,7 +9,9 @@ class User < ApplicationRecord
         #  authentication_keys: :phone_number
   include DeviseTokenAuth::Concerns::User
 
-  has_one :optcode, dependent: :destroy
+  has_one :otpcode, dependent: :destroy
+  has_many :subscribes
+  has_many :schools, through: :subscribes
 
   def add_user_uid
     self.uid = SecureRandom.uuid
