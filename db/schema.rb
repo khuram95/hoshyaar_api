@@ -10,15 +10,58 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_19_053921) do
+ActiveRecord::Schema.define(version: 2019_03_23_133435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.string "text"
+    t.string "image"
+    t.string "voice_message"
+    t.string "video"
+    t.integer "report_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "otpcodes", force: :cascade do |t|
     t.string "otp_code"
     t.string "expire_at"
     t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.string "image"
+    t.integer "report_id"
+    t.integer "latitude"
+    t.integer "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "report_reactions", force: :cascade do |t|
+    t.integer "report_id"
+    t.boolean "is_agree"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.integer "authencity"
+    t.integer "user_id"
+    t.string "report_date"
+    t.string "report_text"
+    t.string "removed_date"
+    t.string "is_removed"
+    t.float "longitude"
+    t.float "latitude"
+    t.integer "removed_by"
+    t.integer "school_id"
+    t.string "video"
+    t.string "voice_message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
