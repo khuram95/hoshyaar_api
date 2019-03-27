@@ -21,6 +21,7 @@ Rails.application.routes.draw do
         resources :otp_codes, only: :index
         resources :users, only: :index
         resources :schools
+        resources :school_details
         get '/schools/sorted_data', to: 'schools#sorted_data'
       end
     end
