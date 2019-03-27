@@ -2,7 +2,7 @@ class Api::V1::SchoolDetailsController < ApplicationController
 
   before_action :school
   def index
-    school.school_details
+    render json: school.school_details
   end
 
   private
