@@ -20,9 +20,9 @@ Rails.application.routes.draw do
       namespace :v1 do
         resources :otp_codes, only: :index
         resources :users, only: :index
-        resources :schools
+        resources :schools, only: :index
         resources :school_details
-        get '/schools/sorted_data', to: 'schools#sorted_data'
+        put '/schools/sorted_data', to: 'schools#sorted_data'
       end
     end
   end

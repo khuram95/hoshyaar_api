@@ -5,6 +5,7 @@ class Api::V1::SchoolDetailsController < ApplicationController
     render json: school.school_details
   end
 
+
   private
 
   def school
