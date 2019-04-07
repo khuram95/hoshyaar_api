@@ -4,4 +4,6 @@ class Report < ApplicationRecord
   has_many :photos
   has_many :comments
   has_many :report_reactions
+  mount_uploader :voice_message, SoundUploader
+
 end

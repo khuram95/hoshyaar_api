@@ -22,6 +22,7 @@ Rails.application.routes.draw do
         resources :users, only: :index
         resources :schools, only: :index
         resources :school_details
+        resources :reports
         put '/schools/sorted_data', to: 'schools#sorted_data'
       end
     end
