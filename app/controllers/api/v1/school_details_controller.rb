@@ -2,13 +2,14 @@ class Api::V1::SchoolDetailsController < ApplicationController
 
   before_action :school
   def index
-    render json: school.school_details
+    @school_details = school.school_details
+    render json: @school_details
   end
 
 
   private
 
   def school
-    School.find_by_id(params[:school_id])
+    School.find_by_emis(params[:school_id])
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_31_131352) do
+ActiveRecord::Schema.define(version: 2019_04_12_095751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(version: 2019_03_31_131352) do
     t.integer "report_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "non_salary_budgets", force: :cascade do |t|
+    t.string "school_id"
+    t.integer "current_year_expenture"
+    t.integer "balance"
+    t.integer "total_funds_available"
   end
 
   create_table "otpcodes", force: :cascade do |t|
@@ -88,9 +95,8 @@ ActiveRecord::Schema.define(version: 2019_03_31_131352) do
     t.string "visiting_date"
   end
 
-  create_table "schools", force: :cascade do |t|
+  create_table "schools", primary_key: "emis", id: :string, force: :cascade do |t|
     t.date "visting_date"
-    t.string "emis"
     t.string "school_name"
     t.string "district"
     t.string "tehsil"
