@@ -2,7 +2,7 @@ class Api::V1::SchoolsController < ApplicationController
 
   def index
     # @schools = School.select(:district).map(&:district).uniq
-    @schools = School.last(50)
+    @schools = School.where(district: 'LAHORE')
     render json: @schools
   end
 

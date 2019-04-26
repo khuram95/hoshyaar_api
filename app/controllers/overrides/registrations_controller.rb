@@ -5,7 +5,7 @@ module Overrides
   class RegistrationsController < DeviseTokenAuth::RegistrationsController
     respond_to :json
 
-    def new
+    def create
       User.transaction do
         @user = User.new create_params
         @user.add_user_uid

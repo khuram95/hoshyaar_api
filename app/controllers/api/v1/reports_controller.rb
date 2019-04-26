@@ -7,7 +7,6 @@ class Api::V1::ReportsController < ApplicationController
 
   def create
     # curent_user add it her and authenticate before action
-    byebug
     report = Report.create! report_params
     report.photos.create! photo_params
     render json: report
