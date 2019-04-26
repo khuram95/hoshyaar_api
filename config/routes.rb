@@ -18,7 +18,12 @@ Rails.application.routes.draw do
 
     namespace :api do
       namespace :v1 do
-        # resources :users, only: :index
+        resources :otp_codes, only: :update
+        resources :users, only: :index
+        resources :schools, only: :index
+        resources :school_details
+        resources :reports
+        put '/schools/sorted_data', to: 'schools#sorted_data'
       end
     end
   end
