@@ -16,6 +16,7 @@ gem 'twilio-ruby'
 gem 'figaro'
 gem 'faker'#, :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'geocoder'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

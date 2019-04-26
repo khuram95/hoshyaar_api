@@ -19,7 +19,6 @@ module Overrides
     end
 
     def destroy
-      byebug
       super
     end
   end
