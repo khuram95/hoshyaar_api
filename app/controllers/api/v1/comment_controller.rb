@@ -1,4 +1,4 @@
-class CommentController < ApplicationContoller
+class CommentController < ApplicationController
   
   def index
     render json: report.comments
