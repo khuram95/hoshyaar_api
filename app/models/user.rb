@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :reports
   has_many :comments#, through: :reports
   has_many :verified_school_datas
-  has_many :report_reactions, through: :reports
+  has_many :report_reactions
   def add_user_uid
     self.uid = SecureRandom.uuid
   end

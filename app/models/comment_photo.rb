@@ -1,0 +1,2 @@
+class CommentPhoto < ApplicationRecord
+end

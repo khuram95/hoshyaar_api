@@ -1,6 +1,6 @@
 class Photo < ApplicationRecord
-  belongs_to :report
   mount_uploader :image, ImageUploader
+  belongs_to :report
 
   #for size validation
 #   validate :image_size_validation
