@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_27_182009) do
+ActiveRecord::Schema.define(version: 2019_04_30_153333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,12 @@ ActiveRecord::Schema.define(version: 2019_04_27_182009) do
     t.integer "current_year_expenture"
     t.integer "balance"
     t.integer "total_funds_available"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "report_id"
+    t.text "notification_text"
   end
 
   create_table "otpcodes", force: :cascade do |t|
