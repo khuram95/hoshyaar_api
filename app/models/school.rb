@@ -4,6 +4,7 @@ class School < ApplicationRecord
   has_many :users, through: :subscribes
   has_many :reports
   has_many :non_salary_budgets
+  has_many :my_interests
 
   scope :by_district, ->(district) { where(district: district) }
   scope :by_tehsil, ->(tehsil) { where(tehsil: tehsil) }

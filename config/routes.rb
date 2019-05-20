@@ -23,7 +23,12 @@ Rails.application.routes.draw do
         resources :schools, only: :index
         resources :school_details
         resources :reports
-        put '/schools/sorted_data', to: 'schools#sorted_data'
+        resources :comments
+        resources :report_reactions
+        resources :my_interests
+        get '/reports/user_reports', to: 'reports#user_reports'
+        get '/schools/district', to: 'schools#district'
+        get '/schools/tehsil', to: 'schools#tehsil'
       end
     end
   end

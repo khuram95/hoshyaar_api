@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_12_095751) do
+ActiveRecord::Schema.define(version: 2019_05_17_203725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comment_photos", force: :cascade do |t|
+    t.string "image"
+    t.integer "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.string "text"
@@ -23,6 +30,12 @@ ActiveRecord::Schema.define(version: 2019_04_12_095751) do
     t.integer "report_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+  end
+
+  create_table "my_interests", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "school_id"
   end
 
   create_table "non_salary_budgets", force: :cascade do |t|
@@ -30,6 +43,12 @@ ActiveRecord::Schema.define(version: 2019_04_12_095751) do
     t.integer "current_year_expenture"
     t.integer "balance"
     t.integer "total_funds_available"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "report_id"
+    t.text "notification_text"
   end
 
   create_table "otpcodes", force: :cascade do |t|
@@ -54,6 +73,7 @@ ActiveRecord::Schema.define(version: 2019_04_12_095751) do
     t.boolean "is_agree"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "reports", force: :cascade do |t|
@@ -140,6 +160,7 @@ ActiveRecord::Schema.define(version: 2019_04_12_095751) do
     t.datetime "updated_at", null: false
     t.json "tokens"
     t.boolean "is_verified", default: false
+    t.jsonb "device_ids", default: []
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["latitude", "longitude"], name: "index_users_on_latitude_and_longitude"
     t.index ["phone_number"], name: "index_users_on_phone_number", unique: true

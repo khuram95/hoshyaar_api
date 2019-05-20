@@ -1,8 +1,8 @@
 class AudioUploader < CarrierWave::Uploader::Base
-  include Cloudinary::CarrierWave
+  # include Cloudinary::CarrierWave
    # Choose what kind of storage to use for this uploader:
   include CarrierWave::MiniMagick
-  include CarrierWave::Audio
+  # include CarrierWave::Audio
 
   # Choose what kind of storage to use for this uploader:
   if Rails.env.production?
