@@ -4,6 +4,7 @@ module Overrides
   # override devise_auth_token session controller
   class SessionsController < DeviseTokenAuth::SessionsController
     respond_to :json
+    before_action :remove_device_id, only: %i[destroy]
     # override devise_auth_token create method
     def create
       @resource = User.find_by_phone_number(params[:phone_number])
@@ -12,6 +13,7 @@ module Overrides
         @resource.add_user_uid
         @resource.save
         sign_in(:user, @resource, store: false, bypass: false)
+        add_device_id
         render_create_success
       else
         render_create_error_bad_credentials # devise_auth_token method (parent class)
@@ -20,6 +22,20 @@ module Overrides
 
     def destroy
       super
+    end
+
+    private
+
+    def add_device_id
+      unless @resource.device_ids.include? params[:device_id]
+        @resource.device_ids << params[:device_id] if params[:device_id].present?
+        @resource.save
+      end
+    end
+
+    def remove_device_id
+      @resource.device_ids.delete(params[:device_id])
+      @resource.save
     end
   end
 end

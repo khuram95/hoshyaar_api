@@ -2,13 +2,14 @@ class Api::V1::ReportReactionsController < ApplicationController
   def create
     if (report_reaction.count == 0)
       new_reaction = current_user.report_reactions.create! reaction_params
-      render json: new_reaction
+      render json: Report.find_by_id(params[:report_id]), each_serializer: ReportSerializer
     else
       if (params[:is_agree] !='')
         update_report = report_reaction.first.update! is_agree: params[:is_agree]
-        render json: update_report
+        render json: Report.find_by_id(params[:report_id]), each_serializer: ReportSerializer
       else
-        render json: report_reaction.delete_all
+        report_reaction.delete_all
+        render json: Report.find_by_id(params[:report_id]), each_serializer: ReportSerializer
       end
     end
   end

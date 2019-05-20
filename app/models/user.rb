@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :verified_school_datas
   has_many :report_reactions
   has_many :notifications
+  has_many :my_interests
   def add_user_uid
     self.uid = SecureRandom.uuid
   end

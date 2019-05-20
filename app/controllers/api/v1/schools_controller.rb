@@ -2,6 +2,7 @@ class Api::V1::SchoolsController < ApplicationController
 
   def index
     # @schools = School.select(:district).map(&:district).uniq
+    params[:tehsil].upcase! #upercase tehsil of neened
     @schools = School.where(tehsil: params[:tehsil])
     render json: @schools
   end
@@ -11,7 +12,6 @@ class Api::V1::SchoolsController < ApplicationController
   end
 
   def tehsil
-    # byebug
     render json: School.where(district: params[:district]).distinct.pluck(:tehsil)
   end
 end

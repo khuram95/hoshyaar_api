@@ -5,7 +5,7 @@ class Report < ApplicationRecord
   has_many :comments
   has_many :report_reactions
   has_many :notifications
-  # mount_uploader :video, VideoUploader
-  # mount_uploader :voice_message, AudioUploader
+  mount_uploader :video, VideoUploader
+  mount_uploader :voice_message, AudioUploader
 
 end
