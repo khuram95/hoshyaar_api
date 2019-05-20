@@ -9,7 +9,6 @@ class OneSignalNotification
   def call
     notification = user.notifications.new(notification_text: notification_data[:notification_text],report_id: notification_data[:report_id])
     if notification.save && user.device_ids.present?
-      puts 'helloooo jani'
       OneSignal::OneSignal.api_key = ENV['ONE_SIGNAL_API_KEY']
       OneSignal::Notification.create(params: android_notification_params)
     end

@@ -49,24 +49,4 @@ class ReportSerializer < ActiveModel::Serializer
         parse_address[0] + ', '+ parse_address[2])
       : 'not found report address'
   end
-
-  # def comments
-  #   object.comments
-  # end
-
-  # def comment_user_name
-  #   object.comments.each do |comment|
-  #     return comment.user&.user_name
-  #   end
-  # end
-
-  # def report_reaction
-  #   object.report_reactions
-  # end
-
-  # def reaction_user_name
-  #   object.report_reactions.each do |reaction|
-  #     return reaction.user&.user_name
-  #   end
-  # end
 end
