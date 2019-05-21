@@ -55,21 +55,21 @@
 
 require 'csv'
 
-# school_csv = File.read(Rails.root.join('lib', 'seeds', 'SchoolTableData.csv'))
-# csv = CSV.parse(school_csv, :headers => true, :encoding => 'ISO-8859-1')
-# csv.each do |row|
-#   school = School.new
-#   school.emis= row['emis'],  # fist line after new in null, so thats why assign again at end
-#   school.school_name=row['school_name'],
-#   school.district= row['district'],
-#   school.tehsil= row['tehsil'],
-#   school.markaz= row['markaz'],
-#   school.school_level= row['school_level'],
-#   school.latitude= row['latitude'].to_f,
-#   school.longitude= row['longitude'].to_f,
-#   school.emis= row['emis'],
-#   school.save
-# end
+school_csv = File.read(Rails.root.join('lib', 'seeds', 'SchoolTableData.csv'))
+csv = CSV.parse(school_csv, :headers => true, :encoding => 'ISO-8859-1')
+csv.each do |row|
+  school = School.new
+  school.emis= row['emis'],  # fist line after new in null, so thats why assign again at end
+  school.school_name=row['school_name'],
+  school.district= row['district'],
+  school.tehsil= row['tehsil'],
+  school.markaz= row['markaz'],
+  school.school_level= row['school_level'],
+  school.latitude= row['latitude'].to_f,
+  school.longitude= row['longitude'].to_f,
+  school.emis= row['emis'],
+  school.save
+end
 
 school_detail_csv = File.read(Rails.root.join('lib', 'seeds', 'SchoolDetailTableData.csv'))
 csv_school_detail = CSV.parse(school_detail_csv, :headers => true, :encoding => 'ISO-8859-1')
