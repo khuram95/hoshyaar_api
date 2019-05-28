@@ -27,6 +27,7 @@ Rails.application.routes.draw do
         resources :report_reactions
         resources :my_interests
         resources :notifications, only: :index
+        resources :ad_hoc_queries, only: :index
         get '/reports/user_reports', to: 'reports#user_reports'
         get '/schools/district', to: 'schools#district'
         get '/schools/tehsil', to: 'schools#tehsil'
