@@ -22,6 +22,12 @@ gem 'one_signal', '~> 1.2.0'
 gem "react_on_rails", "11.0.0"
 gem "webpacker", "~> 3"
 gem 'mini_racer', platforms: :ruby
+gem 'sassc-rails'
+gem 'sass-rails'
+gem 'jquery-rails'
+gem 'bootstrap', '~> 4.1.0'
+
+
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
