@@ -1,0 +1,314 @@
+.loginForm {
+  margin-top: 30px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 30px 23%;
+  background: white;
+  h2{
+    font-family: 'Avenir';
+    font-size: 28px;
+    font-weight: 700;
+    margin: 30px 0;
+    color: #676767;
+  }
+  .field {
+    margin: 25px 0;
+    .formLabel {
+      font-family: 'AvenirLTStd-Book';
+      font-size: 18px;
+      color: #676767;
+    }
+    .formInput {
+      font-family: 'AvenirLTStd-Book';
+      font-size: 18px;
+      width: 100%;
+      padding: 3px 12px;
+      color: #676767;
+      &:active, &:focus{
+        outline: none;
+      }
+    }
+  }
+  .button {
+    color: #ffffff;
+    background-color: #79b74a;
+    font-family: 'Avenir';
+    font-weight: 600;
+    width: 100%;
+    border: 1px solid #79b74a;
+    border-radius: 5px;
+    padding: 15px 0;
+  }
+  .button:hover {
+    background-color: #ffffff;
+    color: #79b74a;
+    cursor: pointer;
+  }
+  .forgotPassword {
+    margin-top: 20px;
+  }
+}
+.header {
+  color: white;
+  font-family: 'Avenir';
+  font-size: 38px;
+  font-weight: 600;
+  margin: 30px 20px;
+}
+
+.admin-body {
+  background-color: #eaeaea !important;
+}
+
+.admin-template-body {
+  padding-top: 30px;
+  padding-left: 35px;
+  min-height: 500px;
+}
+
+.admin-sidebar-ul {
+  padding-top: 20px;
+  padding-left: 10px;
+}
+
+.sidebar {
+  background-color: #5d8e38;
+  color: #ffffff;
+  font-family: 'AvenirLTStd-Book';
+  min-height: 100vh;
+}
+
+.sidebar-items {
+  padding: 10px;
+}
+
+.sidebar-links,
+.sidebar-links:hover {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.admin-navbar-wrapper {
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px 0;
+  padding: 10px;
+}
+
+.box-img {
+  margin-right: 10px;
+}
+
+.logo-with-img {
+  display: flex;
+  padding-left: 30px;
+  align-items: center;
+}
+
+.my-box-pal {
+  color: #79b74a !important;
+  font-size: 26px;
+}
+
+.my-box-pal:hover {
+  color: #79b74a !important;
+}
+
+.logo-left-text {
+  font-family: 'AvenirLTStd-Book';
+}
+
+.logo-right-text {
+  font-family: 'Avenir';
+  font-weight: 700;
+}
+
+.admin-bell,
+.admin-bell:hover {
+  background-color: transparent;
+  border: transparent;
+}
+
+.admin-badge {
+  color: #ffffff;
+  font-family: 'Avenir';
+  background-color: orange;
+  font-weight: 700;
+  border-radius: 100%;
+  position: absolute;
+  top: -16px;
+  right: 10px;
+}
+
+.notification-header {
+  color: #676767;
+  font-family: 'Avenir';
+  font-weight: 700;
+}
+
+.admin-notification {
+  color: #676767;
+  font-family: 'AvenirLTStd-Book';
+}
+
+.admin-hamburger {
+  color: #79b74a;
+}
+
+.signout-wrapper {
+  display: flex;
+}
+
+.signout-btn {
+  color: #ffffff;
+  background-color: #79b74a;
+  border: 1px solid #79b74a;
+  border-radius: 4px;
+  font-family: 'Avenir';
+  font-weight: 700;
+  align-items: center;
+    display: flex;
+}
+
+.signout-btn:hover {
+  color: #79b74a;
+  background-color: #ffffff;
+}
+
+.welcome-admin {
+  color: #676767;
+  font-family: 'Avenir';
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.total-numbers {
+  color: #676767;
+  font-family: 'Avenir';
+  font-weight: 700;
+  margin-left: 30px;
+}
+
+.admin-amount {
+  font-family: 'AvenirLTStd-Book';
+  font-weight: normal;
+}
+
+.admin-table-wrapper {
+  overflow-x: auto;
+  overflow-y: auto;
+  height: 800px;
+  margin: 30px;
+}
+
+.admin-table {
+  border: 1px solid #cccccc;
+  border-spacing: 5px;
+}
+
+.tname,
+.tname:hover {
+  text-decoration: none;
+  color: #676767;
+}
+
+.admin-th {
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid #cccccc;
+  font-family: 'Avenir';
+  color: #676767;
+  background-repeat: no-repeat;
+  background-position: right center;
+  padding: 10px;
+}
+
+.admin-th:hover {
+  color: #676767;
+  text-decoration: none;
+}
+
+.admin-th .current {
+  padding-right: 25px;
+  background-repeat: no-repeat;
+  background-position: right center;
+  text-decoration: none;
+  color: #676767;
+}
+
+.admin-tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+.admin-td {
+  border: 1px solid #cccccc;
+  text-align: center;
+  font-family: 'AvenirLTStd-Book';
+  color: #676767;
+  padding: 10px;
+}
+
+.asc {
+  background-image: url('/images/caret-arrow-up.png');
+}
+
+.desc {
+  background-image: url('/images/sort-down.png');
+}
+
+.arrow {
+  cursor: pointer;
+}
+
+.Statistics-heading {
+  color: #676767;
+  font-family: 'Avenir';
+  font-weight: 700;
+}
+
+.admin-graph {
+  margin-bottom: 35px;
+}
+
+.total-users {
+  width: 100px;
+  height: 100px;
+  color: #ffffff;
+  background-color: #79b74a;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.number-of-users {
+  display: flex;
+  align-items: center;
+  font-family: 'AvenirLTStd-Book';
+}
+
+.send-host-req-btn {
+  min-width: 140px;
+  height: 30px;
+  border-radius: 4px;
+  box-shadow: inset 0 2px 0 0 rgba(255, 255, 255, 0.5);
+  background-color: #79b74a;
+  border: solid 1px #5d8e38;
+  font-family: 'Avenir';
+  font-weight: 700;
+  font-size: 12px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 991px) {
+  #navbarNav {
+    background: #00000075;
+    border-radius: 6px;
+    position: absolute;
+    top: 94px;
+    left: 0;
+    max-width: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+}

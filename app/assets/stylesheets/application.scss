@@ -1,0 +1,41 @@
+
+
+@import "bootstrap.css";
+@import "font-awesome.css";
+// @import "admin_panel";
+
+@font-face {
+  font-family: 'AvenirLT95-Black';
+  src: url('./fonts/Avenir_LT_95_Black.ttf') format('Opentype');
+
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+    font-family: 'AvenirLTStd-Book';
+    src: url('./fonts/AvenirLTStd-Book.otf') format('Opentype');
+
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir-Black';
+    src: url('./fonts/Avenir-Black.ttf') format('truetype');
+
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir';
+    src: url('./fonts/Avenir.otf') format('Opentype');
+    src: url('./fonts/Avenir.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/AvenirLT-Black.woff2') format('woff2'),
+        url('./fonts/AvenirLT-Black.woff') format('woff'),
+        url('./fonts/AvenirLT-Black.ttf') format('truetype'),
+        url('./fonts/AvenirLT-Black.svg#Avenir') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}

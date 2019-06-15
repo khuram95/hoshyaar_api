@@ -1,17 +1,47 @@
+# require_relative 'boot'
+
+# require "rails"
+# # Pick the frameworks you want:
+# require "active_model/railtie"
+# require "active_job/railtie"
+# require "active_record/railtie"
+# require "active_storage/engine"
+# require "action_controller/railtie"
+# require "action_mailer/railtie"
+# require "action_view/railtie"
+# require "action_cable/engine"
+# # require "sprockets/railtie"
+# # require "rails/test_unit/railtie"
+
+# # Require the gems listed in Gemfile, including any gems
+# # you've limited to :test, :development, or :production.
+# Bundler.require(*Rails.groups)
+
+# module HoshyarApi
+#   class Application < Rails::Application
+#     # Initialize configuration defaults for originally generated Rails version.
+#     config.load_defaults 5.2
+
+#     # Settings in config/environments/* take precedence over those specified here.
+#     # Application configuration can go into files in config/initializers
+#     # -- all .rb files in that directory are automatically loaded after loading
+#     # the framework and any gems in your application.
+
+#     # Only loads a smaller set of middleware suitable for API only apps.
+#     # Middleware like session, flash, cookies can be added back manually.
+#     # Skip views, helpers and assets when generating a new resource.
+#     config.api_only = true
+#   end
+# end
+
+
+
+
 require_relative 'boot'
 
-require "rails"
-# Pick the frameworks you want:
-require "active_model/railtie"
-require "active_job/railtie"
-require "active_record/railtie"
-require "active_storage/engine"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "action_view/railtie"
-require "action_cable/engine"
-# require "sprockets/railtie"
-# require "rails/test_unit/railtie"
+require 'rails/all'
+
+#require_relative '../lib/rack/reject_trace'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -20,16 +50,30 @@ Bundler.require(*Rails.groups)
 module HoshyarApi
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.2
-
+    config.load_defaults 5.1
     # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration can go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded after loading
-    # the framework and any gems in your application.
+    # Application configuration should go into files in config/initializers
+    # -- all .rb files in that directory are automatically loaded.
+    config.autoload_paths << Rails.root.join('lib')
+    config.action_mailer.default_url_options = { host: 'localhost:3000' }
+    # config.assets.initialize_on_precompile = false
+    # Use Sidekiq as ActiveJob backend
+    #config.active_job.queue_adapter = :sidekiq
 
-    # Only loads a smaller set of middleware suitable for API only apps.
-    # Middleware like session, flash, cookies can be added back manually.
-    # Skip views, helpers and assets when generating a new resource.
-    config.api_only = true
+    # Configure generators, see: http://guides.rubyonrails.org/generators.html
+    config.generators do |g|
+      # Create appropriate tests in spec/ not test/
+      g.test_framework :rspec, fixture: true
+      g.fixture_replacement :factory_bot, dir: 'spec/factories'
+
+      # Don't generate helpers, JS, CSS or view specs for controllers
+      # See: http://guides.rubyonrails.org/generators.html
+      g.helper      false
+      g.javascripts false
+      g.stylesheets false
+      g.view_specs  false
+
+
+    end
   end
 end
