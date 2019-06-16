@@ -16,14 +16,27 @@ class Api::V1::AdHocQueriesController < ApplicationController
     compelete_data = [{}]
     i=0
     params[:comparisonBetween].each do |district|
-      data = School.where(district: district).flat_map(&:school_details)
-      schools =  School.where(district: district)
+
+      data = ''
+      if params[:comparisonName] === 'district'
+        data = SchoolDetail.joins(:school).where(schools: {district: district})
+      elsif params[:comparisonName] === 'tehsil'
+        data = SchoolDetail.joins(:school).where(schools: {tehsil: district})
+      elsif params[:comparisonName] === 'school'
+        render json: {error: 'please wait it not complete yet'}
+        data = SchoolDetail.find_by_school_id(district.emis)
+      else
+        render json: {error: 'please select comparison type'}
+      end
       arr ={"#{district}"=>{}}
-      arr["#{district}"]["total_schools"] = schools.count
-      params[:comparisonOn].map do |q|
-        # val = q == 'avaliable_fund' ? schools.pluck(q).sum : data.pluck(q).sum
-        val = data.pluck(q).sum
-        arr["#{district}"]["#{q}"] = val
+      arr["#{district}"]["total_schools"] = data.count
+      params[:comparisonOn].map do |cmp|
+        if (cmp==='toilet_avaliable' || cmp === 'is_electricity_avaliable' || cmp === 'is_drinking_water_avaliable' || cmp === 'is_boundary_wall')
+          arr["#{district}"]["#{cmp}"] = data.where(cmp.to_sym => true).count
+        else
+          val = data.pluck(cmp).sum
+          arr["#{district}"]["#{cmp}"] = val
+        end
       end
       compelete_data[i] = arr
       i += 1
