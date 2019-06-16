@@ -55,58 +55,58 @@
 
 require 'csv'
 
-school_csv = File.read(Rails.root.join('lib', 'seeds', 'SchoolTableData.csv'))
-csv = CSV.parse(school_csv, :headers => true, :encoding => 'ISO-8859-1')
-csv.each do |row|
-  school = School.new
-  school.emis= row['emis'],  # fist line after new in null, so thats why assign again at end
-  school.school_name=row['school_name'],
-  school.district= row['district'],
-  school.tehsil= row['tehsil'],
-  school.markaz= row['markaz'],
-  school.school_level= row['school_level'],
-  school.latitude= row['latitude'].to_f,
-  school.longitude= row['longitude'].to_f,
-  school.emis= row['emis'],
-  school.save
-end
+# school_csv = File.read(Rails.root.join('lib', 'seeds', 'SchoolTableData.csv'))
+# csv = CSV.parse(school_csv, :headers => true, :encoding => 'ISO-8859-1')
+# csv.each do |row|
+#   school = School.new
+#   school.emis= row['emis'],  # fist line after new in null, so thats why assign again at end
+#   school.school_name=row['school_name'],
+#   school.district= row['district'],
+#   school.tehsil= row['tehsil'],
+#   school.markaz= row['markaz'],
+#   school.school_level= row['school_level'],
+#   school.latitude= row['latitude'].to_f,
+#   school.longitude= row['longitude'].to_f,
+#   school.emis= row['emis'],
+#   school.save
+# end
 
-school_detail_csv = File.read(Rails.root.join('lib', 'seeds', 'SchoolDetailTableData.csv'))
-csv_school_detail = CSV.parse(school_detail_csv, :headers => true, :encoding => 'ISO-8859-1')
-csv_school_detail.each do |row|
-  school_detail = SchoolDetail.new
-  school_detail.balance = row['balance'],
-  school_detail.visiting_date = row['visiting_date'],
-  school_detail.school_id = row['rs_school_emis_code'],
-  school_detail.total_class_rooms = row['total_Class_rooms'],
-  school_detail.use_class_rooms = row['use_class_rooms'],
-  school_detail.total_teacher = row['total_teacher'],
-  school_detail.non_teacher = row['non_teacher'],
-  school_detail.toilet_avaliable = row['toilets_available'],
-  school_detail.toilet_functional = row['toilets_functional'],
-  school_detail.is_toilet_functional = row['is_toilet_functional'],
-  school_detail.student_enrolled = row['student_enrolled'],
-  school_detail.student_present = row['student_present'],
-  school_detail.is_electricity_avaliable = row['is_electricity_avaliable'],
-  school_detail.is_drinking_water_avaliable = row['is_drinkinging_water_functional'],
-  school_detail.is_boundary_wall = row['is_boundary_functional'],
-  school_detail.avaliable_fund = row['avalible_fund'],
-  school_detail.expenditure = row['expenditure'],
-  school_detail.balance = row['balance'],
-  school_detail.visiting_date = row['visiting_date'],
-  school_detail.save
-end
+# school_detail_csv = File.read(Rails.root.join('lib', 'seeds', 'SchoolDetailTableData.csv'))
+# csv_school_detail = CSV.parse(school_detail_csv, :headers => true, :encoding => 'ISO-8859-1')
+# csv_school_detail.each do |row|
+#   school_detail = SchoolDetail.new
+#   school_detail.balance = row['balance'],
+#   school_detail.visiting_date = row['visiting_date'],
+#   school_detail.school_id = row['rs_school_emis_code'],
+#   school_detail.total_class_rooms = row['total_Class_rooms'],
+#   school_detail.use_class_rooms = row['use_class_rooms'],
+#   school_detail.total_teacher = row['total_teacher'],
+#   school_detail.non_teacher = row['non_teacher'],
+#   school_detail.toilet_avaliable = row['toilets_available'],
+#   school_detail.toilet_functional = row['toilets_functional'],
+#   school_detail.is_toilet_functional = row['is_toilet_functional'],
+#   school_detail.student_enrolled = row['student_enrolled'],
+#   school_detail.student_present = row['student_present'],
+#   school_detail.is_electricity_avaliable = row['is_electricity_avaliable'],
+#   school_detail.is_drinking_water_avaliable = row['is_drinkinging_water_functional'],
+#   school_detail.is_boundary_wall = row['is_boundary_functional'],
+#   school_detail.avaliable_fund = row['avalible_fund'],
+#   school_detail.expenditure = row['expenditure'],
+#   school_detail.balance = row['balance'],
+#   school_detail.visiting_date = row['visiting_date'],
+#   school_detail.save
+# end
 
 non_salary_budget_csv = File.read(Rails.root.join('lib', 'seeds', 'NonSalaryBudget.csv'))
 non_salary_budget_parse = CSV.parse(non_salary_budget_csv, :headers => true, :encoding => 'ISO-8859-1')
-
-
 non_salary_budget_parse.each do |row|
-  non_salary_budget = NonSalaryBudget.new
-  non_salary_budget.balance = row['sc_balance']
-  non_salary_budget.school_id = row['rs_school_emis_code']
-  non_salary_budget.current_year_expenture = row['sc_total_exp_current_year']
-  non_salary_budget.balance = row['sc_balance']
-  non_salary_budget.total_funds_available = row['total_funds_available']
-  non_salary_budget.save
+  school_detail = SchoolDetail.find_by_school_id(row['rs_school_emis_code'])
+  school_detail.update! balance:  row['sc_balance'], expenditure: row['sc_total_exp_current_year'], avaliable_fund: row['total_funds_available']
+  # non_salary_budget = NonSalaryBudget.new
+  # non_salary_budget.balance = row['sc_balance']
+  # non_salary_budget.school_id = row['rs_school_emis_code']
+  # non_salary_budget.current_year_expenture = row['sc_total_exp_current_year']
+  # non_salary_budget.balance = row['sc_balance']
+  # non_salary_budget.total_funds_available = row['total_funds_available']
+  # non_salary_budget.save
 end

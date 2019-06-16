@@ -7,7 +7,10 @@ class OneSignalNotification
   end
 
   def call
-    notification = user.notifications.new(notification_text: notification_data[:notification_text],report_id: notification_data[:report_id])
+    now = DateTime.now.utc
+    notification = user.notifications.new(notification_text: notification_data[:notification_text],
+                                          report_id: notification_data[:report_id],
+                                          report_time: now.in_time_zone('Asia/Karachi'))
     if notification.save && user.device_ids.present?
       OneSignal::OneSignal.api_key = ENV['ONE_SIGNAL_API_KEY']
       OneSignal::Notification.create(params: android_notification_params)
