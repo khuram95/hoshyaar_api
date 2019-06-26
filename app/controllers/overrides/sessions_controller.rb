@@ -13,6 +13,7 @@ module Overrides
         @resource.add_user_uid
         @resource.save
         sign_in(:user, @resource, store: false, bypass: false)
+        update_lat_long
         add_device_id
         render_create_success
       else
@@ -31,6 +32,10 @@ module Overrides
         @resource.device_ids << params[:device_id] if params[:device_id].present?
         @resource.save
       end
+    end
+
+    def update_lat_long
+      @resource.update! longitude: params[:longitude], latitude: params[:latitude]
     end
 
     def remove_device_id

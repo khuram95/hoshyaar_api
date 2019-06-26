@@ -9,9 +9,15 @@ class Api::V1::ReportsController < ApplicationController
     # curent_user add it her and authenticate before action
     @report = Report.create! report_params
     @report.update! authencity: calculate_authenticity
-    @report.photos.create! photo_params
+    for i in 0..params[:image_count].to_i-1
+      image = 'image'+i.to_s
+      @report.photos.create! image: params[image.to_sym]
+    end
     User.all.each do |user|
-      OneSignalNotification.new(report_create_notification, user).call
+      # byebug
+      # distance = Geocoder::Calculations.distance_between([user.latitude, user.longitude], [@report.latitude,@report.longitude])
+      (get_distance(user) < 5.0 || user.my_interests.find_by_school_id(@report.school_id)) && curent_user != user &&  OneSignalNotification.new(report_create_notification, user, 'report').call
+      # if distance*1.60934 < 5.0
     end
     render json: @report
   end
@@ -32,6 +38,12 @@ class Api::V1::ReportsController < ApplicationController
   end
 
   private
+
+
+  def get_distance(user)
+    distance = Geocoder::Calculations.distance_between([user.latitude, user.longitude], [@report.latitude,@report.longitude])
+    (distance*1.60934)
+  end
 
   def report_params
     params.permit(:report_text, :longitude, :latitude, :school_id, :user_id, :voice_message, :video )
@@ -56,7 +68,7 @@ class Api::V1::ReportsController < ApplicationController
     if(params[:video].present?)
       authenticity = authenticity + 25
     end
-    if(params[:image].present?)
+    if(params[:image0].present?)
       authenticity = authenticity + 25
     end
     authenticity

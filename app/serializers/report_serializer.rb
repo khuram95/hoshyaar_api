@@ -43,7 +43,7 @@ class ReportSerializer < ActiveModel::Serializer
   end
 
   def report_address
-    object.longitude ?
+    object.longitude != 0.0 && object.latitude != 0.0 ?
         (lat_long = object.latitude.to_s + ',' + object.longitude.to_s
         parse_address = Geocoder.search(lat_long).first.address.split(',')
         parse_address[0] + ', '+ parse_address[2])
