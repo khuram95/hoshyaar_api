@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_16_072613) do
+ActiveRecord::Schema.define(version: 2019_07_11_212750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -162,6 +162,7 @@ ActiveRecord::Schema.define(version: 2019_06_16_072613) do
     t.json "tokens"
     t.boolean "is_verified", default: false
     t.jsonb "device_ids", default: []
+    t.boolean "is_active", default: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["latitude", "longitude"], name: "index_users_on_latitude_and_longitude"
     t.index ["phone_number"], name: "index_users_on_phone_number", unique: true

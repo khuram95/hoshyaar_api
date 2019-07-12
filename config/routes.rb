@@ -28,6 +28,7 @@ Rails.application.routes.draw do
         resources :my_interests
         resources :notifications, only: :index
         resources :ad_hoc_queries, only: :create
+        get 'users/toggle_status', to: 'users#toggle_status'
         get '/reports/user_reports', to: 'reports#user_reports'
         get '/schools/district', to: 'schools#district'
         get '/schools/tehsil', to: 'schools#tehsil'

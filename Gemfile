@@ -23,7 +23,7 @@ gem 'one_signal', '~> 1.2.0'
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'rails-erd'
-  gem 'rb-readline'
+  # gem 'rb-readline'
 end
 
 group :development do
