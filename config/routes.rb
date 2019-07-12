@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     namespace :api do
       namespace :v1 do
         resources :otp_codes, only: :update
-        resources :users, only: :index
+        resources :users, only: %i[index update]
         resources :schools, only: :index
         resources :school_details
         resources :reports
@@ -29,6 +29,7 @@ Rails.application.routes.draw do
         resources :notifications, only: :index
         resources :ad_hoc_queries, only: :create
         get 'users/toggle_status', to: 'users#toggle_status'
+        get 'schools/all_schools', to: 'schools#all_schools'
         get '/reports/user_reports', to: 'reports#user_reports'
         get '/schools/district', to: 'schools#district'
         get '/schools/tehsil', to: 'schools#tehsil'

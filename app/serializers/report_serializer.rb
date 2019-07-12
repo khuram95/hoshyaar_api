@@ -49,4 +49,8 @@ class ReportSerializer < ActiveModel::Serializer
         parse_address[0] + ', '+ parse_address[2])
       : 'not found report address'
   end
+
+  def total_comments
+    object.comments.count
+  end
 end

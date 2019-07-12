@@ -11,6 +11,15 @@ module Api
         render json: User.all
       end
 
+      def update
+        if user.valid_password?(params[:old_password])
+          user.update! password: params[:new_password]
+          head :ok
+        else
+         render json: { error: 'old password is invalid' }
+        end
+      end
+
       private
 
       def user
