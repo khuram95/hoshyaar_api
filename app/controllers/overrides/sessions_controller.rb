@@ -8,6 +8,7 @@ module Overrides
     # override devise_auth_token create method
     def create
       @resource = User.find_by_phone_number(params[:phone_number])
+      # byebug
       if @resource && @resource&.valid_password?(params[:password])
         @client_id, @token = @resource.create_token
         @resource.add_user_uid

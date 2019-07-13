@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_11_212750) do
+ActiveRecord::Schema.define(version: 2019_07_12_133731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,7 +83,6 @@ ActiveRecord::Schema.define(version: 2019_07_11_212750) do
     t.string "report_date"
     t.string "report_text"
     t.string "removed_date"
-    t.string "is_removed"
     t.float "longitude"
     t.float "latitude"
     t.integer "removed_by"
@@ -92,6 +91,7 @@ ActiveRecord::Schema.define(version: 2019_07_11_212750) do
     t.string "voice_message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_removed", default: false
   end
 
   create_table "school_details", force: :cascade do |t|

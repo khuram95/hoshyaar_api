@@ -22,15 +22,17 @@ Rails.application.routes.draw do
         resources :users, only: %i[index update]
         resources :schools, only: :index
         resources :school_details
-        resources :reports
+        resources :reports, only: %i[index create]
         resources :comments
-        resources :report_reactions
+        resources :report_reactions, only: %i[create]
         resources :my_interests
         resources :notifications, only: :index
         resources :ad_hoc_queries, only: :create
+        resources :verify_schools, only: :create
         get 'users/toggle_status', to: 'users#toggle_status'
         get 'schools/all_schools', to: 'schools#all_schools'
         get '/reports/user_reports', to: 'reports#user_reports'
+        get '/report_reactions/toggle_report_status', to: 'report_reactions#toggle_report_status'
         get '/schools/district', to: 'schools#district'
         get '/schools/tehsil', to: 'schools#tehsil'
       end

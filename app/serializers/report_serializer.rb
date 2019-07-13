@@ -17,7 +17,7 @@ class ReportSerializer < ActiveModel::Serializer
   attributes :id, :authencity, :user_id, :report_date, :report_text, :removed_date, :is_removed,
               :longitude, :latitude, :removed_by, :school_id, :video, :voice_message, :created_at,
               :updated_at, :photos, :school, :user, :report_address, :comments,
-              :report_reactions, :agree, :dis_agree
+              :report_reactions, :agree, :dis_agree, :is_removed, :total_comments
 
   has_many :comments, serializer: CommentSerializer
   has_many :report_reactions, serializer: ReportReaction

@@ -1,40 +1,27 @@
 class Api::V1::ReportsController < ApplicationController
 
   def index
-     @reports = Report.last(3)
-     render json: @reports.reverse
+    @reports = request.user_agent.length < 15 ? Report.where(is_removed: false).last(3) : Report.all
+    render json: @reports.reverse
   end
 
   def create
     # curent_user add it her and authenticate before action
     @report = Report.create! report_params
-    @report.update! authencity: calculate_authenticity
+    @report.update! authencity: calculate_authenticity, report_date: report_date
     for i in 0..params[:image_count].to_i-1
       image = 'image'+i.to_s
       @report.photos.create! image: params[image.to_sym]
     end
     User.all.each do |user|
-      # byebug
-      # distance = Geocoder::Calculations.distance_between([user.latitude, user.longitude], [@report.latitude,@report.longitude])
       (get_distance(user) < 5.0 || user.my_interests.find_by_school_id(@report.school_id)) && curent_user != user &&  OneSignalNotification.new(report_create_notification, user, 'report').call
-      # if distance*1.60934 < 5.0
     end
     render json: @report
   end
 
   def show
-    # render json: Report.all
-    user_reports = curent_user.reports.order( 'created_at DESC' ).first(3)
+    user_reports = curent_user.reports.where(is_removed: false).order( 'created_at DESC' ).first(3)
     render json: user_reports, each_serializer: ReportSerializer
-  end
-
-
-  def update
-    # update report by user or admin?
-  end
-
-  def destory
-    # soft delete
   end
 
   private
@@ -76,5 +63,9 @@ class Api::V1::ReportsController < ApplicationController
 
   def report_create_notification
     NotificationData.report_create(@report.id, @report.school)
+  end
+
+  def report_date
+    DateTime.now.utc.in_time_zone('Asia/Karachi')
   end
 end
