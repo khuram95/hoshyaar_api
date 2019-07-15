@@ -8,15 +8,18 @@ module Overrides
     # override devise_auth_token create method
     def create
       @resource = User.find_by_phone_number(params[:phone_number])
-      # byebug
       if @resource && @resource&.valid_password?(params[:password])
-        @client_id, @token = @resource.create_token
-        @resource.add_user_uid
-        @resource.save
-        sign_in(:user, @resource, store: false, bypass: false)
-        update_lat_long
-        add_device_id
-        render_create_success
+        if !@resource.is_active
+          render json: { errors: ['this user is inactive'] }
+        else
+          @client_id, @token = @resource.create_token
+          @resource.add_user_uid
+          @resource.save
+          sign_in(:user, @resource, store: false, bypass: false)
+          update_lat_long
+          add_device_id
+          render_create_success
+        end
       else
         render_create_error_bad_credentials # devise_auth_token method (parent class)
       end

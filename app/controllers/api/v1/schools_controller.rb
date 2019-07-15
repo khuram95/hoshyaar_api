@@ -16,6 +16,6 @@ class Api::V1::SchoolsController < ApplicationController
   end
 
   def all_schools
-    render json: School.first(40)
+    render json: School.all.order('report_count DESC').first(40)
   end
 end

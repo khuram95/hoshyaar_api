@@ -1,7 +1,7 @@
 class Api::V1::ReportsController < ApplicationController
 
   def index
-    @reports = request.user_agent.length < 15 ? Report.where(is_removed: false).last(3) : Report.all
+    @reports = request.user_agent.length < 15 ? Report.where(is_removed: false).last(5) : Report.all
     render json: @reports.reverse
   end
 
@@ -19,8 +19,8 @@ class Api::V1::ReportsController < ApplicationController
     render json: @report
   end
 
-  def show
-    user_reports = curent_user.reports.where(is_removed: false).order( 'created_at DESC' ).first(3)
+  def user_reports
+    user_reports = curent_user.reports.order( 'created_at DESC' ).first(5)
     render json: user_reports, each_serializer: ReportSerializer
   end
 
