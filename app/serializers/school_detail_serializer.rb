@@ -1,5 +1,5 @@
 class SchoolDetailSerializer < ActiveModel::Serializer
-  attributes :total_class_rooms, :use_class_rooms, :total_teacher, :non_teacher,
+  attributes :id, :total_class_rooms, :use_class_rooms, :total_teacher, :non_teacher,
               :toilet_avaliable, :toilet_functional, :is_toilet_functional,
               :student_enrolled, :student_present, :is_electricity_avaliable,
               :is_drinking_water_avaliable, :is_boundary_wall, :avaliable_fund,

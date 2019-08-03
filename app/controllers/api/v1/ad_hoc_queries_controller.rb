@@ -16,7 +16,6 @@ class Api::V1::AdHocQueriesController < ApplicationController
     compelete_data = [{}]
     i=0
     params[:comparisonBetween].each do |district|
-
       data = ''
       if params[:comparisonName] === 'district'
         data = SchoolDetail.joins(:school).where(schools: {district: district})
@@ -31,7 +30,7 @@ class Api::V1::AdHocQueriesController < ApplicationController
       arr ={"#{district}"=>{}}
       arr["#{district}"]["total_schools"] = data.count
       params[:comparisonOn].map do |cmp|
-        if (cmp==='toilet_avaliable' || cmp === 'is_electricity_avaliable' || cmp === 'is_drinking_water_avaliable' || cmp === 'is_boundary_wall')
+        if (cmp==='is_toilet_functional' || cmp === 'is_electricity_avaliable' || cmp === 'is_drinking_water_avaliable' || cmp === 'is_boundary_wall')
           arr["#{district}"]["#{cmp}"] = data.where(cmp.to_sym => true).count
         else
           val = data.pluck(cmp).sum

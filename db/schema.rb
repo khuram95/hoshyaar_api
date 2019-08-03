@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_16_072613) do
+ActiveRecord::Schema.define(version: 2019_07_13_054755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,7 +83,6 @@ ActiveRecord::Schema.define(version: 2019_06_16_072613) do
     t.string "report_date"
     t.string "report_text"
     t.string "removed_date"
-    t.string "is_removed"
     t.float "longitude"
     t.float "latitude"
     t.integer "removed_by"
@@ -92,6 +91,7 @@ ActiveRecord::Schema.define(version: 2019_06_16_072613) do
     t.string "voice_message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_removed", default: false
   end
 
   create_table "school_details", force: :cascade do |t|
@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(version: 2019_06_16_072613) do
     t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "report_count", default: 0, null: false
   end
 
   create_table "subscribes", force: :cascade do |t|
@@ -162,6 +163,7 @@ ActiveRecord::Schema.define(version: 2019_06_16_072613) do
     t.json "tokens"
     t.boolean "is_verified", default: false
     t.jsonb "device_ids", default: []
+    t.boolean "is_active", default: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["latitude", "longitude"], name: "index_users_on_latitude_and_longitude"
     t.index ["phone_number"], name: "index_users_on_phone_number", unique: true

@@ -14,4 +14,8 @@ class Api::V1::SchoolsController < ApplicationController
   def tehsil
     render json: School.where(district: params[:district]).distinct.pluck(:tehsil)
   end
+
+  def all_schools
+    render json: School.all.order('report_count DESC').first(40)
+  end
 end

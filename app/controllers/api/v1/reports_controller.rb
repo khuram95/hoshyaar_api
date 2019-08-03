@@ -1,37 +1,36 @@
 class Api::V1::ReportsController < ApplicationController
 
   def index
-     @reports = Report.last(3)
-     render json: @reports.reverse
+    @reports = request.user_agent.length < 15 ? Report.where(is_removed: false).last(5) : Report.all
+    render json: @reports.reverse
   end
 
   def create
     # curent_user add it her and authenticate before action
     @report = Report.create! report_params
-    @report.update! authencity: calculate_authenticity
-    @report.photos.create! photo_params
+    @report.update! authencity: calculate_authenticity, report_date: report_date
+    for i in 0..params[:image_count].to_i-1
+      image = 'image'+i.to_s
+      @report.photos.create! image: params[image.to_sym]
+    end
     User.all.each do |user|
-      OneSignalNotification.new(report_create_notification, user).call
+      (get_distance(user) < 5.0 || user.my_interests.find_by_school_id(@report.school_id)) && curent_user != user &&  OneSignalNotification.new(report_create_notification, user, 'report').call
     end
     render json: @report
   end
 
-  def show
-    # render json: Report.all
-    user_reports = curent_user.reports.order( 'created_at DESC' ).first(3)
+  def user_reports
+    user_reports = curent_user.reports.order( 'created_at DESC' ).first(5)
     render json: user_reports, each_serializer: ReportSerializer
   end
 
-
-  def update
-    # update report by user or admin?
-  end
-
-  def destory
-    # soft delete
-  end
-
   private
+
+
+  def get_distance(user)
+    distance = Geocoder::Calculations.distance_between([user.latitude, user.longitude], [@report.latitude,@report.longitude])
+    (distance*1.60934)
+  end
 
   def report_params
     params.permit(:report_text, :longitude, :latitude, :school_id, :user_id, :voice_message, :video )
@@ -56,7 +55,7 @@ class Api::V1::ReportsController < ApplicationController
     if(params[:video].present?)
       authenticity = authenticity + 25
     end
-    if(params[:image].present?)
+    if(params[:image0].present?)
       authenticity = authenticity + 25
     end
     authenticity
@@ -64,5 +63,9 @@ class Api::V1::ReportsController < ApplicationController
 
   def report_create_notification
     NotificationData.report_create(@report.id, @report.school)
+  end
+
+  def report_date
+    DateTime.now.utc.in_time_zone('Asia/Karachi')
   end
 end

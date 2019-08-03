@@ -6,6 +6,19 @@ class NotificationData
     }
   end
 
+  def self.comment_create(report_id, user)
+    {
+      report_id: report_id,
+      notification_text: "A new comment created on your report by, #{user.user_name}"
+    }
+  end
+
+  def self.comment_create_on_comment(report_id, user)
+    {
+      report_id: report_id,
+      notification_text: " #{user.user_name} also comment on post"
+    }
+  end
   # def self.package_received(package_id, package_title, host_name)
   #   {
   #     type: PACKAGE_RECEIVED,

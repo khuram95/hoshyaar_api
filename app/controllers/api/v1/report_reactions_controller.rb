@@ -14,6 +14,11 @@ class Api::V1::ReportReactionsController < ApplicationController
     end
   end
 
+  def toggle_report_status
+    report.update! is_removed: !report.is_removed, removed_date: report_date
+    render json: Report.all, each_serializer: ReportSerializer
+  end
+
   private
 
   def current_user
@@ -26,5 +31,13 @@ class Api::V1::ReportReactionsController < ApplicationController
 
   def report_reaction
     ReportReaction.where(user_id: params[:user_id], report_id: params[:report_id])
+  end
+
+  def report_date
+    DateTime.now.utc.in_time_zone('Asia/Karachi')
+  end
+
+  def report
+    Report.find_by_id(params[:report_id])
   end
 end
