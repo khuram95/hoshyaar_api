@@ -78,8 +78,8 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-production:
-  <<: *default
-  database: hoshyar_api_production
-  username: hoshyar_api
-  password: <%= ENV['HOSHYAR_API_DATABASE_PASSWORD'] %>
+# production:
+#   <<: *default
+#   database: hoshyar_api_production
+#   username: hoshyar_api
+#   password: <%= ENV['HOSHYAR_API_DATABASE_PASSWORD'] %>
